@@ -8,7 +8,31 @@ import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
 import Header from './Components/Header/Header';
 
+
 class App extends Component {
+  constructor(props){
+    super(props)
+
+      this.state={
+        imageURL: '',
+        productName: 'nameholder',
+        price: '$300'
+      };
+
+  };
+
+
+  handleChange = (event) => {
+    this.setState({ [event.target.name]:event.target.value })
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('lasagna is just pasta cake')
+  };
+
+
+
   render() {
     return (
       <div className="App">

@@ -4,6 +4,11 @@ const cors = require('cors');
 const app = express();
 const controller = require('./controller.js');
 
+const massive = require('massive');
+require('dotenv').config();
+
+//massive 
+process.env.DATABASE_CONNECTION
 
 // endpoints
 app.get('/', (req,res)=> {
