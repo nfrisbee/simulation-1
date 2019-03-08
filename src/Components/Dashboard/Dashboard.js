@@ -15,5 +15,5 @@ export default class Dashboard extends Component {
      }
 }
  
-export default Dashboard;
+
 

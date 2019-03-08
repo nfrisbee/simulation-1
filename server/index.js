@@ -29,7 +29,9 @@ massive(CONNECTION_STRING).then(dbInstance => {
 
 
 //endpoints
-app.get('/api/inventory', congroller.getAll);
+app.get('/api/inventory', controller.getAll);
+app.post('api/product', controller.newProduct);
+
 
 //server running
 app.listen(8000, () => {
