@@ -16,13 +16,26 @@ class App extends Component {
 
     this.state = {
       inventoryList: [
-        {name: 'shoes', price: '300', imgURL: 'placeholder'}
-        {name: 'pants', price: '200', imgURL: 'placeholder'}
-        {name: 'top', price: '80', imgURL: 'placeholder'}
       ]
     }
+  };
 
-  }
+
+//Component Lifecycle Methods
+  componentDidMount(){
+    this.getProducts();
+  };
+
+
+//Methods
+  getProducts = () => {
+    axios.get('/api/inventory').then(response => {
+      this.setState({
+        inventoryList: response.data
+      })
+    })
+  };
+
 
   render() {
     return (
