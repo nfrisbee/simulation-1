@@ -1,12 +1,19 @@
 import React from 'react';
 
-class Dashboard extends React.Component {
-    state = {  }
+export default class Dashboard extends Component {
     render() { 
+
+        const mappedInvList = this.props.inventoryList.map((product, index) => {
+            return <Product key={product.name} product={product}/>
+        });
+        
         return ( 
-            <div>Dashboard</div>
+            <div>
+                {mappedInvList}
+            </div>
          );
-    }
+     }
 }
  
 export default Dashboard;
+

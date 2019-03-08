@@ -3,6 +3,7 @@ import logo from './logo.svg';
 import './App.css';
 import axios from 'axios';
 
+// Components
 import Product from './Components/Product/Product';
 import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
@@ -10,34 +11,24 @@ import Header from './Components/Header/Header';
 
 
 class App extends Component {
-  constructor(props){
-    super(props)
+  constructor(){
+    super();
 
-      this.state={
-        imageURL: '',
-        productName: 'nameholder',
-        price: '$300'
-      };
+    this.state = {
+      inventoryList: [
+        {name: 'shoes', price: '300', imgURL: 'placeholder'}
+        {name: 'pants', price: '200', imgURL: 'placeholder'}
+        {name: 'top', price: '80', imgURL: 'placeholder'}
+      ]
+    }
 
-  };
-
-
-  handleChange = (event) => {
-    this.setState({ [event.target.name]:event.target.value })
-  };
-
-  handleSubmit = (event) => {
-    event.preventDefault();
-    console.log('lasagna is just pasta cake')
-  };
-
-
+  }
 
   render() {
     return (
       <div className="App">
         <Product />
-        <Dashboard />
+        <Dashboard inventoryList={this.state.inventoryList}/>
         <Form />
         <Header />
       </div>
