@@ -1,8 +1,11 @@
 import React from 'react';
 
+export default function Product(props) {
+    const {removeProduct, product} = props;
 
-function Product(props){
-    return <div>Product</div>
-}
-
-export default Product;
+return (
+    <div>
+        <button onClick={() => removeProduct(product.id)}>Delete Product</button>
+    </div>
+    )
+};

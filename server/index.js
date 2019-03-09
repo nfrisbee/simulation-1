@@ -31,11 +31,12 @@ massive(CONNECTION_STRING).then(dbInstance => {
 //endpoints
 app.get('/api/inventory', controller.getAll);
 app.post('api/product', controller.newProduct);
-
+app.delete('/api/product/:id', controller.removeProduct);
+app.get('api/product/:id', controller.getProduct);
 
 //server running
 app.listen(8000, () => {
-    console.log('server is connected!')
+    console.log('server is connected!');
 });
 
 

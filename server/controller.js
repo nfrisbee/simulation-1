@@ -19,5 +19,27 @@ module.exports = {
         });
         
     }
+
+    removeProduct: (req, res) => {
+        const db = req.app.get('db');
+        const {id} = req.params;
+
+        db.remove_product([id]).then(response => {
+            res.status(200).send('dude, nice, its gone!);
+        }).catch(err => {
+            console.log('error removing product:', err);
+        });
+    },
+
+    getProduct: (req, rest) => {
+        const db = req.app.get('db');
+        const {id}= req.params;
+
+        db.get_product([id]).then(response => {
+            res.status(200).send(response);
+        }).catch(err => {
+            console.log('getProduct:', err);
+        });
+     }
 }
 

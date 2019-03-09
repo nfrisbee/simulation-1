@@ -1,43 +1,31 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import './App.css';
 
 //Components
 import Dashboard from './Components/Dashboard/Dashboard';
 import Form from './Components/Form/Form';
 import Header from './Components/Header/Header';
+import {Route, Switch} from 'react-router-dom';
+
 
 class App extends Component {
-  constructor(){
-    super();
-
-    this.state = {
-      inventoryList: []
-    }
-  };
-
-  //Component Lifecycle Methods
-  componentDidMount(){
-    this.getProducts();
-  };
-
-  //Methods
-  getProducts = () => {
-    axios.get('/api/inventory').then(response => {
-      this.setState({
-        inventoryList: response.data
-      })
-    })
-  };
 
 
   render() {
     return (
-      <div className="App">
-        <Dashboard inventoryList={this.state.inventoryList}/>
-        <Form getProducts={this.getProducts}/>
+      /*<div className="App">
+        <Dashboard inventoryList={this.state.inventoryList} getProducts={this.getProducts}/>
+        <Form getProducts={this.getProducts} currentlySelected={this.state.currentlySelected}/>
         <Header />
-      </div>
+      </div>*/
+  <div>
+    <Header />
+      <Switch>
+        <Route exact path="/" Component={Dashboard}/>
+       <Route path="/add" Component={Form}/>
+        <Route path="/edit:id" Component={Form}/>
+      </Switch>
+  </div>
     );
   }
 }

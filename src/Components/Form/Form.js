@@ -8,10 +8,17 @@ export default class Form extends Component {
         this.state = {
             imgURL: '',
             name: '',
-            price: ''
+            price: '',
+            selectedProduct: {}
         }
     }
+    //lifecycle hooks
+    componentDidMount(){
+        const {id} = this.props.match.params;
+        this.getProduct(id);
+    }
 
+    //methods
     handleNameChange = (event) => {
         this.setState({
             name: event.target.value
@@ -37,6 +44,13 @@ export default class Form extends Component {
             price: ''
         })
     }
+    getProduct = (id) {
+        axios.get(`/api/product/:${id}`).then(response => {
+            this.setState({
+                console.log(response);
+            })
+        })
+    }
 
     createProduct = () => {
         const {imgURL, name, price} = this.state;
@@ -48,7 +62,7 @@ export default class Form extends Component {
             price: price
         }
         axios.post('/api/product', product).then(response => {
-            this.resetState();
+            getProducts();
         });
 
         this.resetState();
