@@ -1,17 +1,16 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import axios from 'axios';
 
+export default class Form extends Component {
+    constructor(){
+        super()
 
-class Form extends Component {
-    constructor(){}
-    super()
-
-    this.state = {
-        imgURL: '',
-        name: '',
-        price: '',
+        this.state = {
+            imgURL: '',
+            name: '',
+            price: ''
         }
     }
-
 
     handleNameChange = (event) => {
         this.setState({
@@ -25,7 +24,6 @@ class Form extends Component {
         })
     }
 
-
     handleImgChange = (event) => {
         this.setState({
             imgURL: event.target.value
@@ -33,29 +31,42 @@ class Form extends Component {
     }
 
     resetState = () => {
-        event.preventDefault();
         this.setState({
             imgURL: '',
             name: '',
-            price: '',
-            
+            price: ''
         })
     }
 
-    render() { 
+    createProduct = () => {
+        const {imgURL, name, price} = this.state;
+        const {getProducts} = this.props;
 
-        return ( 
-            <div>
-                <form>
-                    <input type="text" placeholder="name" onChange={(event) => this.hangleNameChange(event)} />
-                    <input type="text" placeholder="img url" onChange={(event) => this.hangleImgChange(event)} />
-                    <input type="text" placeholder="price" onChange={(event) => this.hanglePriceChange(event)} />
-                    <button>Add to inventory</button>
-                    <button onClick={(event) => this.resetState(event)}>Cancel</button>
-                </form>
-            </div>
-         );
+        const product = {
+            imgURL: imgURL,
+            name: name,
+            price: price
+        }
+        axios.post('/api/product', product).then(response => {
+            this.resetState();
+        });
+
+        this.resetState();
     }
+
+
+  render() {
+      console.log(this.state)
+    return (
+      <div>
+        <div>
+            <input type="text" placeholder="name" onChange={(event) => this.handleNameChange(event)}/>
+            <input type="text" placeholder="img url" onChange={(event) => this.handleImgChange(event)}/>
+            <input type="text" placeholder="price" onChange={(event) => this.handlePriceChange(event)}/>
+            <button onClick={() => this.createProduct()}>Add to Inv</button>
+            <button onClick={() => this.resetState()}>Cancel</button>
+        </div>
+      </div>
+    )
+  }
 }
- 
-export default Form;

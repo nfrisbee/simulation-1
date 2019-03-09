@@ -1,7 +1,9 @@
-import React from 'react';
+import React from 'react'
 
-function Header(props) {
-    return <div>Header</div>
+export default function Header() {
+  return (
+    <div>
+      Header
+    </div>
+  )
 }
-
-export default Header;
